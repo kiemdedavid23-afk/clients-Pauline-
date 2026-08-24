@@ -1156,3 +1156,20 @@ html.preload-active { overflow: hidden; }
   cursor: pointer;
   padding: 0.2rem;
 }
+
+/* ==========================================================================
+   REPÈRE VISUEL "VOIR LE PRODUIT" SUR LES CARTES DE LA COLLECTION
+   ========================================================================== */
+
+.prod-view-link {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--blue-accent);
+  text-align: center;
+}
+
+.prod-card:hover .prod-view-link {
+  color: var(--navy);
+}
