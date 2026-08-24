@@ -357,4 +357,239 @@ body.nav-locked { overflow: hidden; }
 
 .btn-secondary:hover { background-color: var(--navy); color: #fff; }
 
+/* ==========================================================================
+   3. RÉASSURANCE
+   ========================================================================== */
+
+.trust-bar { background-color: var(--navy); padding: 2rem 1.25rem; }
+
+.trust-bar-container { max-width: 950px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
+
+.trust-item { display: flex; align-items: flex-start; gap: 0.85rem; }
+
+.trust-icon { color: var(--gold); font-size: 1.1rem; flex-shrink: 0; margin-top: 0.15rem; }
+
+.trust-item-title { color: #fff; font-size: 0.98rem; font-weight: 700; margin-bottom: 0.2rem; }
+.trust-item-sub { color: var(--text-on-dark-muted); font-size: 0.86rem; line-height: 1.5; }
+
+.trust-divider { display: none; }
+
+/* ==========================================================================
+   4. À LA RENCONTRE DE TANTIE PAULINE
+   ========================================================================== */
+
+.story-section { padding: 4rem 1.25rem; background-color: var(--bg-white); }
+
+.story-container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.25rem; align-items: center; }
+
+.story-photo-wrapper { position: relative; width: 100%; max-width: 340px; flex-shrink: 0; }
+
+.story-photo {
+  width: 100%; height: 320px;
+  object-fit: cover;
+  display: block;
+  border-radius: 130px 20px 130px 20px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  z-index: 2;
+}
+
+.story-photo-frame {
+  position: absolute;
+  top: 16px; left: 16px;
+  width: 100%; height: 320px;
+  border: 2px solid var(--gold);
+  border-radius: 130px 20px 130px 20px;
+  z-index: 1;
+}
+
+.story-text-block { text-align: center; }
+
+.section-tag {
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  color: var(--blue-accent);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.section-tag.light { color: var(--gold); }
+
+.tag-dash { width: 18px; height: 3px; background-color: var(--gold); border-radius: 2px; flex-shrink: 0; }
+.tag-dash.light { background-color: var(--gold); }
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--navy);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 0.9rem;
+}
+
+.section-title.light { color: #fff; }
+
+.section-lead { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; max-width: 620px; margin: 0 auto; }
+.section-lead.light { color: var(--text-on-dark); }
+
+.story-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.1rem; }
+
+.story-quote {
+  border-left: 3px solid var(--gold);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  margin: 1.75rem 0;
+  text-align: left;
+}
+
+.story-quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--navy);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.story-quote cite { font-size: 0.85rem; font-weight: 600; color: var(--blue-accent); font-style: normal; }
+
+.link-arrow {
+  display: inline-block;
+  color: var(--blue-accent);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--gold);
+  padding-bottom: 2px;
+}
+
+/* ==========================================================================
+   CARROUSEL INFINI
+   ========================================================================== */
+
+.marquee-section { padding: 1.5rem 0; background-color: var(--bg-cream); overflow: hidden; }
+
+.marquee-track { display: flex; width: max-content; animation: marquee-scroll 42s linear infinite; }
+
+.marquee-group { display: flex; gap: 1rem; padding-right: 1rem; }
+
+.marquee-item { width: 180px; height: 130px; border-radius: 18px; overflow: hidden; flex-shrink: 0; box-shadow: var(--shadow-soft); }
+
+.marquee-item img { width: 100%; height: 100%; object-fit: cover; }
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-section:hover .marquee-track { animation-play-state: paused; }
+
+/* ==========================================================================
+   5. DANS LES COULISSES
+   ========================================================================== */
+
+.behind-scenes-section {
+  position: relative;
+  padding: 4.5rem 1.25rem;
+  background: linear-gradient(160deg, var(--navy-light) 0%, var(--navy) 100%);
+  overflow: hidden;
+}
+
+.behind-scenes-pattern {
+  position: absolute; inset: 0;
+  color: var(--gold);
+  opacity: 0.06;
+  background-image:
+    linear-gradient(135deg, currentColor 25%, transparent 25%),
+    linear-gradient(225deg, currentColor 25%, transparent 25%),
+    linear-gradient(45deg, currentColor 25%, transparent 25%),
+    linear-gradient(315deg, currentColor 25%, transparent 25%);
+  background-position: 20px 0, 20px 0, 0 0, 0 0;
+  background-size: 40px 40px;
+}
+
+.behind-scenes-container { position: relative; max-width: 1100px; margin: 0 auto; }
+
+.section-header-center { text-align: center; margin-bottom: 2.75rem; }
+
+.behind-scenes-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2.25rem; }
+
+.bs-item { position: relative; border-radius: var(--radius-lg); overflow: hidden; height: 240px; box-shadow: var(--shadow-strong); }
+.bs-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.bs-item:hover img { transform: scale(1.06); }
+
+.bs-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1.1rem 1rem 0.8rem;
+  background: linear-gradient(to top, rgba(20, 35, 50, 0.85), transparent);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.behind-scenes-text {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-on-dark);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   6. NOS UNIVERS
+   ========================================================================== */
+
+.categories-section { padding: 4.5rem 1.25rem; background-color: var(--bg-cream); }
+.categories-container { max-width: 1100px; margin: 0 auto; }
+
+.categories-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+
+.category-card-full { background-color: var(--bg-white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-soft); }
+
+.category-img-box { width: 100%; height: 280px; overflow: hidden; background-color: var(--bg-soft); }
+.category-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.category-card-full:hover .category-img-box img { transform: scale(1.05); }
+
+.category-info { padding: 1.5rem 1.5rem 1.75rem; text-align: center; }
+
+.category-info h3 { font-family: var(--font-serif); font-size: 1.5rem; color: var(--navy); font-weight: 600; margin-bottom: 0.6rem; }
+.category-info p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem; }
+
+/* ==========================================================================
+   7. COMMENT COMMANDER
+   ========================================================================== */
+
+.how-to-order-section { padding: 4.5rem 1.25rem; background-color: var(--bg-white); }
+.how-to-order-container { max-width: 1100px; margin: 0 auto; }
+
+.steps-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+
+.step-card { padding: 2rem 1.5rem; border-radius: var(--radius-lg); background-color: var(--bg-cream); text-align: center; }
+
+.step-number { display: block; font-family: var(--font-serif); font-size: 2.2rem; font-weight: 700; color: var(--gold); margin-bottom: 0.6rem; }
+
+.step-card h3 { font-family: var(--font-serif); font-size: 1.25rem; color: var(--navy); font-weight: 600; margin-bottom: 0.5rem; }
+.step-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+
+.how-to-order-cta { text-align: center; }
+.how-to-order-cta .btn-primary { display: inline-block; width: auto; max-width: none; }
+
+/* ==========================================================================
+   8. POURQUOI CHEZ TANTIE PAULINE
+   ========================================================================== */
+
+.why-us-section { padding: 4.5rem 1.25rem; background-color: var(--bg-soft); }
+.why-us-container { max-width: 1100px; margin: 0 auto; }
+
+.why-us-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+
+.why-card { padding: 2.1rem 1.6rem; border-radius: 24px; background-color: var(--bg-white); box-shadow: var(--shadow-soft); text-align: left; }
+
+.why-number { display: block; font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--gold); margin-bottom: 0.75rem; }
+
+.why-card h3 { font-family: var(--font-serif); font-size: 1.25rem; color: var(--navy); margin-bottom: 0.55rem; font-weight: 600; }
+.why-card p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7; }
+
 /*
