@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administration — Chez Tantie Pauline</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body admin-body-centered">
+
+  <main class="admin-login-wrapper">
+    <div class="admin-login-card">
+
+      <div class="admin-login-logo">
+        <img src="../assets/logo/logo-pauline.png" alt="Chez Tantie Pauline" class="admin-login-logo-real" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <svg class="admin-login-logo-fallback" viewBox="0 0 60 60" aria-hidden="true">
+          <defs>
+            <linearGradient id="loginLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2c5c8a" />
+              <stop offset="100%" stop-color="#163a5c" />
+            </linearGradient>
+          </defs>
+          <circle cx="30" cy="30" r="29" fill="url(#loginLogoGrad)" />
+          <text x="30" y="37" font-family="'Cormorant Garamond', serif" font-style="italic" font-weight="700" font-size="22" fill="#fff" text-anchor="middle">TP</text>
+          <path d="M13 43 Q30 50 47 43" stroke="#d3a94c" stroke-width="1.4" fill="none" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <h1 class="admin-login-title">Administration</h1>
+      <p class="admin-login-subtitle">Chez Tantie Pauline</p>
+
+      <form class="admin-login-form" id="adminLoginForm">
+        <div class="admin-field">
+          <label for="loginIdentifiant">Identifiant ou e-mail</label>
+          <input type="text" id="loginIdentifiant" name="identifiant" autocomplete="username" required>
+        </div>
+
+        <div class="admin-field">
+          <label for="loginPassword">Mot de passe</label>
+          <input type="password" id="loginPassword" name="password" autocomplete="current-password" required>
+        </div>
+
+        <div class="admin-login-error" id="adminLoginError" hidden></div>
+
+        <button type="submit" class="btn-primary admin-login-submit" id="adminLoginSubmit">
+          <span class="admin-btn-label">Se connecter</span>
+          <span class="admin-btn-spinner" hidden></span>
+        </button>
+      </form>
+
+      <a href="../index.html" class="admin-back-to-site">&larr; Retour au site public</a>
+
+    </div>
+  </main>
+
+  <script src="js/admin-api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
