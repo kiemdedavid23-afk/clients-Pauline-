@@ -1,0 +1,55 @@
+<header class="site-header" id="mainHeader">
+  <div class="header-container">
+
+    <a href="index.html" class="brand-logo-badge" title="Chez Tantie Pauline — Accueil">
+      <span class="logo-mark-wrap">
+        <img src="assets/logo/logo-pauline.png" alt="Logo Chez Tantie Pauline" class="logo-real" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <svg class="logo-mark-svg logo-fallback" viewBox="0 0 60 60" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2c5c8a" />
+              <stop offset="100%" stop-color="#163a5c" />
+            </linearGradient>
+          </defs>
+          <circle cx="30" cy="30" r="29" fill="url(#logoGrad)" />
+          <text x="30" y="37" font-family="'Cormorant Garamond', serif" font-style="italic" font-weight="700" font-size="22" fill="#fff" text-anchor="middle">TP</text>
+          <path d="M13 43 Q30 50 47 43" stroke="#d3a94c" stroke-width="1.4" fill="none" stroke-linecap="round" />
+        </svg>
+      </span>
+      <span class="logo-word">Chez Tantie<br>Pauline</span>
+    </a>
+
+    <nav class="site-nav-desktop">
+      <a href="index.html" class="nav-link">Accueil</a>
+      <a href="produits.html" class="nav-link">Collection</a>
+      <a href="apropos.html" class="nav-link">À propos</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline,%20je%20souhaite%20échanger%20avec%20vous" class="header-wa-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="header-wa-text">Écrire à Tantie Pauline</span>
+      </a>
+
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navOverlay">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<nav class="nav-overlay" id="navOverlay" aria-hidden="true">
+  <div class="nav-overlay-pattern"></div>
+  <button class="nav-close-btn" id="navCloseBtn" aria-label="Fermer le menu">&times;</button>
+  <ul class="nav-overlay-list">
+    <li><a href="index.html" class="nav-overlay-link">Accueil</a></li>
+    <li><a href="produits.html" class="nav-overlay-link">Collection</a></li>
+    <li><a href="apropos.html" class="nav-overlay-link">À propos</a></li>
+    <li><a href="contact.html" class="nav-overlay-link">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline" class="nav-overlay-wa" target="_blank" rel="noopener">Écrire sur WhatsApp &rarr;</a>
+</nav>
