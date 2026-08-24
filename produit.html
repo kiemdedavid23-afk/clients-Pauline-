@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chez Tantie Pauline — Fiche produit</title>
+  <meta name="description" content="Découvrez cet article de la collection Chez Tantie Pauline.">
+
+  <!--
+    Open Graph générique pour l'instant : voir l'analyse en tête de réponse.
+    Une vraie vignette par produit (photo + prix spécifiques) demande un
+    minimum de rendu serveur, incompatible avec le "aucun Worker
+    supplémentaire" validé — à discuter séparément si souhaité un jour.
+  -->
+  <meta property="og:site_name" content="Chez Tantie Pauline">
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="Chez Tantie Pauline — Découvrez cet article">
+  <meta property="og:description" content="Sacs et chaussures sélectionnés avec soin par Tantie Pauline. Commande simple sur WhatsApp.">
+  <!-- TODO : remplacer par le domaine réel une fois connu -->
+  <meta property="og:image" content="https://VOTRE-DOMAINE-ICI/assets/social/og-default.jpg">
+  <meta property="og:url" content="https://VOTRE-DOMAINE-ICI/produit.html">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#8EC8E8">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="app-download-banner"></div>
+
+  <script src="js/preloader.js"></script>
+
+  <div id="site-header"></div>
+
+  <main>
+
+    <div class="product-detail-topbar">
+      <div class="product-detail-topbar-container">
+        <a href="produits.html" class="link-back-collection">&larr; Retour à la collection</a>
+      </div>
+    </div>
+
+    <section class="product-detail-section" id="productSkeletonSection">
+      <div class="product-detail-container">
+        <div class="skeleton-block product-gallery-skeleton"></div>
+        <div class="product-info-panel">
+          <div class="skeleton-line skeleton-line-tag"></div>
+          <div class="skeleton-line skeleton-line-title"></div>
+          <div class="skeleton-line skeleton-line-price"></div>
+          <div class="skeleton-line skeleton-line-badge"></div>
+          <div class="skeleton-line skeleton-line-text"></div>
+          <div class="skeleton-line skeleton-line-text"></div>
+          <div class="skeleton-line skeleton-line-button"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-detail-section" id="productDetailSection" hidden>
+      <div class="product-detail-container">
+
+        <div class="product-gallery">
+          <button type="button" class="product-gallery-main" id="productGalleryMain" aria-label="Agrandir la photo">
+            <img id="productMainImage" src="" alt="" class="product-main-img">
+          </button>
+          <div class="product-gallery-thumbs" id="productGalleryThumbs"></div>
+        </div>
+
+        <div class="product-info-panel">
+          <span class="section-tag" id="productCategoryTag"><span class="tag-dash"></span><span id="productCategoryText"></span></span>
+          <h1 class="product-detail-name" id="productName"></h1>
+          <p class="product-detail-price" id="productPrice"></p>
+          <span class="prod-badge" id="productAvailabilityBadge"><span class="prod-badge-dot"></span><span id="productAvailabilityText"></span></span>
+          <p class="product-detail-short" id="productShortDesc"></p>
+
+          <a href="#" class="btn-wa-large product-detail-wa-btn" id="productWhatsappBtn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span id="productWhatsappLabel">Écrire à Tantie Pauline sur WhatsApp</span>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="product-description-section" id="productDescriptionSection">
+        <div class="product-description-container">
+          <span class="section-tag"><span class="tag-dash"></span>À PROPOS DE CET ARTICLE</span>
+          <div class="product-description-text" id="productDescriptionText"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="collection-grid-section" id="productNotFoundSection" hidden>
+      <div class="collection-grid-container">
+        <div class="products-empty-state">
+          <p class="products-empty-title" id="notFoundTitle">Produit introuvable</p>
+          <p class="products-empty-text" id="notFoundText">Cette pièce n'est peut-être plus disponible ou le lien n'est plus valide.</p>
+          <div class="products-error-actions">
+            <a href="produits.html" class="btn-primary">Retourner à la collection</a>
+            <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline" class="btn-secondary" target="_blank" rel="noopener">Écrire à Tantie Pauline</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <div class="product-lightbox" id="productLightbox" aria-hidden="true" role="dialog" aria-label="Visionneuse photo">
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Fermer la visionneuse">&times;</button>
+    <button type="button" class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Photo précédente">&#8249;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button type="button" class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Photo suivante">&#8250;</button>
+    <span class="lightbox-counter" id="lightboxCounter"></span>
+  </div>
+
+  <script src="js/components.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/produit.js"></script>
+  <script src="js/app-download.js"></script>
+</body>
+</html>
