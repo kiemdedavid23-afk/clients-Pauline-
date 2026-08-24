@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collection — Chez Tantie Pauline</title>
+  <meta name="description" content="Découvrez la collection de sacs et chaussures de Chez Tantie Pauline.">
+
+  <meta property="og:site_name" content="Chez Tantie Pauline">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Collection — Chez Tantie Pauline">
+  <meta property="og:description" content="Découvrez les sacs et chaussures sélectionnés avec attention par Tantie Pauline.">
+  <!-- TODO : remplacer par le domaine réel une fois connu -->
+  <meta property="og:image" content="https://VOTRE-DOMAINE-ICI/assets/social/og-default.jpg">
+  <meta property="og:url" content="https://VOTRE-DOMAINE-ICI/produits.html">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#8EC8E8">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="app-download-banner"></div>
+
+  <script src="js/preloader.js"></script>
+
+  <div id="site-header"></div>
+
+  <main>
+
+    <section class="collection-intro-section">
+      <div class="collection-intro-container">
+        <span class="section-tag"><span class="tag-dash"></span>COLLECTION</span>
+        <h1 class="section-title">Découvrez nos sacs et nos chaussures</h1>
+        <p class="section-lead">Découvrez les sacs et chaussures sélectionnés avec attention par Tantie Pauline.</p>
+      </div>
+    </section>
+
+    <section class="collection-filters-section">
+      <div class="collection-filters-container">
+        <button type="button" class="filter-pill active" data-filter="tous">Tous</button>
+        <button type="button" class="filter-pill" data-filter="sacs">Sacs</button>
+        <button type="button" class="filter-pill" data-filter="chaussures">Chaussures</button>
+      </div>
+    </section>
+
+    <section class="collection-grid-section">
+      <div class="collection-grid-container">
+
+        <div class="prod-grid" id="productsGrid" aria-live="polite"></div>
+
+        <div class="products-empty-state" id="productsEmptyState" hidden>
+          <p class="products-empty-title">La collection arrive bientôt.</p>
+          <p class="products-empty-text">Tantie Pauline prépare actuellement ses prochaines sélections.</p>
+          <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline,%20je%20voulais%20voir%20la%20collection" class="btn-primary" target="_blank" rel="noopener">Écrire à Tantie Pauline sur WhatsApp</a>
+        </div>
+
+        <div class="products-error-state" id="productsErrorState" hidden>
+          <p class="products-error-title">La collection ne peut pas être chargée pour le moment.</p>
+          <div class="products-error-actions">
+            <button type="button" class="btn-primary" id="retryButton">Réessayer</button>
+            <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline" class="btn-secondary" target="_blank" rel="noopener">Écrire à Tantie Pauline</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-container">
+        <span class="cta-tag"><span class="tag-dash light"></span>UNE QUESTION ?</span>
+        <h2 class="cta-title">Vous ne trouvez pas ce que vous cherchez ?</h2>
+        <p class="cta-desc">Écrivez directement à Tantie Pauline, elle vous aidera à trouver l'article qui vous correspond.</p>
+        <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline,%20je%20recherche%20un%20article%20particulier" class="btn-wa-large" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Écrire à Tantie Pauline sur WhatsApp
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/produits.js"></script>
+  <script src="js/app-download.js"></script>
+</body>
+</html>
