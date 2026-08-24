@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter / modifier un produit — Administration Chez Tantie Pauline</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body admin-guard-pending">
+
+  <div id="admin-nav"></div>
+
+  <main class="admin-main">
+    <div class="admin-page-container admin-page-container-narrow">
+
+      <h1 class="admin-page-title" id="adminProductFormTitle">Ajouter un produit</h1>
+
+      <form class="admin-product-form" id="adminProductForm">
+
+        <div class="admin-form-section">
+          <h2 class="admin-form-section-title">Photos</h2>
+
+          <div class="photo-uploader">
+            <div class="photo-thumbs" id="photoThumbs"></div>
+            <label class="photo-add-btn">
+              <input type="file" id="photoInput" accept="image/*" hidden>
+              <span>+ Ajouter une photo</span>
+            </label>
+          </div>
+          <p class="admin-field-hint">La première photo ajoutée devient la photo principale.</p>
+        </div>
+
+        <div class="admin-form-section">
+          <h2 class="admin-form-section-title">Informations</h2>
+
+          <div class="admin-field">
+            <label for="productNom">Nom du produit</label>
+            <input type="text" id="productNom" name="nom" required>
+          </div>
+
+          <div class="admin-field-row">
+            <div class="admin-field">
+              <label for="productCategorie">Catégorie</label>
+              <select id="productCategorie" name="categorie">
+                <option value="sacs">Sacs</option>
+                <option value="chaussures">Chaussures</option>
+              </select>
+            </div>
+
+            <div class="admin-field">
+              <label for="productPrix">Prix (FCFA)</label>
+              <input type="number" id="productPrix" name="prix" min="0" step="500" required>
+            </div>
+          </div>
+
+          <div class="admin-field">
+            <label for="productDisponibilite">Disponibilité</label>
+            <select id="productDisponibilite" name="disponibilite">
+              <option value="disponible">Disponible</option>
+              <option value="peu_de_stock">Peu de stock</option>
+              <option value="rupture">Rupture</option>
+            </select>
+          </div>
+
+          <div class="admin-field">
+            <label for="productDescription">Description (facultatif)</label>
+            <textarea id="productDescription" name="description" rows="5"></textarea>
+          </div>
+        </div>
+
+        <div class="admin-form-feedback" id="adminFormFeedback" hidden></div>
+
+        <button type="submit" class="btn-primary admin-btn-block" id="adminProductSubmit">Publier le produit</button>
+
+      </form>
+
+    </div>
+  </main>
+
+  <script src="js/admin-api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
