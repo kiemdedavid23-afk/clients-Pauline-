@@ -2,25 +2,6 @@
  * Injection centralisée des liens de contact réels, à partir de
  * window.SHOP_CONFIG uniquement. Aucune coordonnée n'est jamais
  * écrite en dur dans le HTML.
- *
- * Attributs pris en charge sur n'importe quel <a> :
- *
- *   data-contact-role="call"       -> devient tel:...
- *   data-contact-role="sms"        -> devient sms:..., avec
- *                                      data-contact-body optionnel
- *   data-contact-role="mail"       -> devient mailto:..., avec
- *                                      data-contact-subject et
- *                                      data-contact-body optionnels
- *   data-contact-role="whatsapp"   -> affiché UNIQUEMENT si
- *                                      SHOP_CONFIG.whatsapp existe
- *
- *   data-contact-fill="phone"      -> reçoit le numéro affichable
- *   data-contact-fill="email"      -> reçoit l'e-mail affichable
- *
- * Les modèles {{nom}}, {{id}}, {{prix}}, {{url}} dans
- * data-contact-body / data-contact-subject sont remplacés si
- * l'élément porte aussi data-product-nom / data-product-id /
- * data-product-prix / data-product-url.
  */
 (function () {
 
@@ -86,6 +67,18 @@
       if (!config.whatsapp) { el.hidden = true; return; }
       var body = fillTemplate_(el.getAttribute('data-contact-body'), el);
       el.href = 'https://wa.me/' + config.whatsapp + (body ? '?text=' + encodeURIComponent(body) : '');
+      el.hidden = false;
+    });
+
+    scope.querySelectorAll('[data-contact-role="facebook"]').forEach(function (el) {
+      if (!config.facebook) { el.hidden = true; return; }
+      el.href = config.facebook;
+      el.hidden = false;
+    });
+
+    scope.querySelectorAll('[data-contact-role="itinerary"]').forEach(function (el) {
+      if (!config.mapsUrl) { el.hidden = true; return; }
+      el.href = config.mapsUrl;
       el.hidden = false;
     });
 
