@@ -58,14 +58,14 @@
         <div class="products-empty-state" id="productsEmptyState" hidden>
           <p class="products-empty-title">La collection arrive bientôt.</p>
           <p class="products-empty-text">Tantie Pauline prépare actuellement ses prochaines sélections.</p>
-          <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline,%20je%20voulais%20voir%20la%20collection" class="btn-primary" target="_blank" rel="noopener">Écrire à Tantie Pauline sur WhatsApp</a>
+          <a href="#" class="btn-primary" data-contact-role="call">Appeler Tantie Pauline</a>
         </div>
 
         <div class="products-error-state" id="productsErrorState" hidden>
           <p class="products-error-title">La collection ne peut pas être chargée pour le moment.</p>
           <div class="products-error-actions">
             <button type="button" class="btn-primary" id="retryButton">Réessayer</button>
-            <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline" class="btn-secondary" target="_blank" rel="noopener">Écrire à Tantie Pauline</a>
+            <a href="#" class="btn-secondary" data-contact-role="call">Appeler Tantie Pauline</a>
           </div>
         </div>
 
@@ -75,12 +75,13 @@
     <section class="cta-section">
       <div class="cta-container">
         <span class="cta-tag"><span class="tag-dash light"></span>UNE QUESTION ?</span>
-        <h2 class="cta-title">Vous ne trouvez pas ce que vous cherchez ?</h2>
-        <p class="cta-desc">Écrivez directement à Tantie Pauline, elle vous aidera à trouver l'article qui vous correspond.</p>
-        <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline,%20je%20recherche%20un%20article%20particulier" class="btn-wa-large" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Écrire à Tantie Pauline sur WhatsApp
-        </a>
+        <h2 class="cta-title">Vous recherchez un article particulier ?</h2>
+        <p class="cta-desc">Contactez Tantie Pauline directement, elle vous aidera à trouver l'article qui vous correspond.</p>
+        <div class="contact-methods-row">
+          <a href="#" class="btn-primary contact-method-btn" data-contact-role="call">Appeler</a>
+          <a href="#" class="btn-secondary contact-method-btn" data-contact-role="sms" data-contact-body="Bonjour Tantie Pauline, je recherche un article particulier. Pouvez-vous m'aider ?">Envoyer un SMS</a>
+          <a href="#" class="btn-secondary contact-method-btn" data-contact-role="mail" data-contact-subject="Demande d'information" data-contact-body="Bonjour Tantie Pauline, je recherche un article particulier dans votre collection.">Envoyer un e-mail</a>
+        </div>
       </div>
     </section>
 
@@ -88,9 +89,12 @@
 
   <div id="site-footer"></div>
 
+  <script src="js/config.js"></script>
+  <script src="js/contact.js"></script>
   <script src="js/components.js"></script>
   <script src="js/api.js"></script>
   <script src="js/produits.js"></script>
   <script src="js/app-download.js"></script>
+
 </body>
 </html>
