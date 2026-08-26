@@ -1207,3 +1207,150 @@ html.preload-active { overflow: hidden; }
   .product-contact-actions { flex-direction: row; }
   .product-contact-btn { width: auto; }
 }
+
+/* ==========================================================================
+   PAGE CONTACT
+   ========================================================================== */
+
+.contact-hero-section {
+  padding: 3.5rem 1.25rem 2.5rem;
+  background-color: var(--bg-cream);
+  text-align: center;
+}
+
+.contact-hero-container { max-width: 640px; margin: 0 auto; }
+
+.contact-hero-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--navy);
+  margin-top: 0.75rem;
+}
+
+.contact-location-section { padding: 3rem 1.25rem 3.5rem; background-color: var(--bg-white); }
+.contact-location-container { max-width: 900px; margin: 0 auto; }
+
+.contact-map-wrapper {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 1.5rem;
+}
+
+.contact-map { width: 100%; height: 300px; }
+
+.contact-map-actions { text-align: center; }
+.contact-map-btn { display: inline-block; width: auto; max-width: none; }
+
+.map-marker-tp-pin {
+  display: flex;
+  width: 38px;
+  height: 38px;
+  border-radius: 50% 50% 50% 0;
+  background: linear-gradient(135deg, var(--navy-light), var(--navy));
+  border: 2px solid var(--gold);
+  box-shadow: var(--shadow-soft);
+  transform: rotate(-45deg);
+  align-items: center;
+  justify-content: center;
+}
+
+.map-marker-tp-label {
+  transform: rotate(45deg);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.leaflet-popup-content-wrapper { border-radius: 14px; }
+.leaflet-popup-content strong { color: var(--navy); font-family: var(--font-serif); }
+
+.contact-methods-section { padding: 3.5rem 1.25rem; background-color: var(--bg-cream); }
+.contact-methods-container { max-width: 1000px; margin: 0 auto; }
+
+.contact-methods-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.contact-method-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  background-color: var(--bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 2rem 1.25rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-method-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-strong); }
+
+.contact-method-icon {
+  display: inline-flex;
+  width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--bg-soft);
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+
+.contact-method-icon svg { width: 22px; height: 22px; }
+
+.contact-method-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--navy);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.contact-method-card p { font-size: 0.88rem; color: var(--text-secondary); word-break: break-word; }
+
+.contact-facebook-section { padding: 0 1.25rem 4rem; background-color: var(--bg-cream); }
+
+.contact-facebook-card {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: var(--bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.contact-facebook-icon { background-color: var(--navy); color: #fff; width: 50px; height: 50px; }
+.contact-facebook-icon svg { width: 24px; height: 24px; }
+
+.contact-facebook-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--navy);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.contact-facebook-text p { font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
+
+@media (min-width: 640px) {
+  .contact-methods-grid { grid-template-columns: repeat(3, 1fr); }
+  .contact-map { height: 380px; }
+}
+
+@media (min-width: 768px) {
+  .contact-facebook-card { flex-direction: row; text-align: left; }
+  .contact-facebook-icon { flex-shrink: 0; }
+}
