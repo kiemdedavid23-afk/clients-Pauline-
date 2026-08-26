@@ -1173,3 +1173,37 @@ html.preload-active { overflow: hidden; }
 .prod-card:hover .prod-view-link {
   color: var(--navy);
 }
+
+/* ==========================================================================
+   MÉTHODES DE CONTACT (remplace les anciens boutons WhatsApp uniques)
+   ========================================================================== */
+
+.contact-methods-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.contact-method-btn { width: 100%; max-width: 280px; text-align: center; }
+
+.product-contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.product-contact-btn { width: 100%; max-width: 280px; text-align: center; }
+
+.floating-card { text-decoration: none; }
+
+@media (min-width: 640px) {
+  .contact-methods-row { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .contact-method-btn { width: auto; }
+}
+
+@media (min-width: 768px) {
+  .product-contact-actions { flex-direction: row; }
+  .product-contact-btn { width: auto; }
+}
