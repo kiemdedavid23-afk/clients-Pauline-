@@ -6,16 +6,10 @@
   <title>Chez Tantie Pauline — Fiche produit</title>
   <meta name="description" content="Découvrez cet article de la collection Chez Tantie Pauline.">
 
-  <!--
-    Open Graph générique pour l'instant : voir l'analyse en tête de réponse.
-    Une vraie vignette par produit (photo + prix spécifiques) demande un
-    minimum de rendu serveur, incompatible avec le "aucun Worker
-    supplémentaire" validé — à discuter séparément si souhaité un jour.
-  -->
   <meta property="og:site_name" content="Chez Tantie Pauline">
   <meta property="og:type" content="product">
   <meta property="og:title" content="Chez Tantie Pauline — Découvrez cet article">
-  <meta property="og:description" content="Sacs et chaussures sélectionnés avec soin par Tantie Pauline. Commande simple sur WhatsApp.">
+  <meta property="og:description" content="Sacs et chaussures sélectionnés avec soin par Tantie Pauline.">
   <!-- TODO : remplacer par le domaine réel une fois connu -->
   <meta property="og:image" content="https://VOTRE-DOMAINE-ICI/assets/social/og-default.jpg">
   <meta property="og:url" content="https://VOTRE-DOMAINE-ICI/produit.html">
@@ -78,10 +72,11 @@
           <span class="prod-badge" id="productAvailabilityBadge"><span class="prod-badge-dot"></span><span id="productAvailabilityText"></span></span>
           <p class="product-detail-short" id="productShortDesc"></p>
 
-          <a href="#" class="btn-wa-large product-detail-wa-btn" id="productWhatsappBtn" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span id="productWhatsappLabel">Écrire à Tantie Pauline sur WhatsApp</span>
-          </a>
+          <div class="product-contact-actions">
+            <a href="#" class="btn-primary product-contact-btn" id="productCallBtn">Appeler</a>
+            <a href="#" class="btn-secondary product-contact-btn" id="productSmsBtn">Envoyer un SMS</a>
+            <a href="#" class="btn-secondary product-contact-btn" id="productEmailBtn">Envoyer un e-mail</a>
+          </div>
         </div>
 
       </div>
@@ -101,7 +96,7 @@
           <p class="products-empty-text" id="notFoundText">Cette pièce n'est peut-être plus disponible ou le lien n'est plus valide.</p>
           <div class="products-error-actions">
             <a href="produits.html" class="btn-primary">Retourner à la collection</a>
-            <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline" class="btn-secondary" target="_blank" rel="noopener">Écrire à Tantie Pauline</a>
+            <a href="#" class="btn-secondary" data-contact-role="call">Appeler Tantie Pauline</a>
           </div>
         </div>
       </div>
@@ -119,9 +114,12 @@
     <span class="lightbox-counter" id="lightboxCounter"></span>
   </div>
 
+  <script src="js/config.js"></script>
+  <script src="js/contact.js"></script>
   <script src="js/components.js"></script>
   <script src="js/api.js"></script>
   <script src="js/produit.js"></script>
   <script src="js/app-download.js"></script>
+
 </body>
 </html>
