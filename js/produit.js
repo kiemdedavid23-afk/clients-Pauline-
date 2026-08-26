@@ -28,8 +28,9 @@
   var descriptionTextEl = document.getElementById('productDescriptionText');
   var descriptionSection = document.getElementById('productDescriptionSection');
 
-  var whatsappBtn = document.getElementById('productWhatsappBtn');
-  var whatsappLabel = document.getElementById('productWhatsappLabel');
+  var callBtn = document.getElementById('productCallBtn');
+  var smsBtn = document.getElementById('productSmsBtn');
+  var emailBtn = document.getElementById('productEmailBtn');
 
   var lightbox = document.getElementById('productLightbox');
   var lightboxImg = document.getElementById('lightboxImg');
@@ -52,45 +53,53 @@
     return window.location.origin + dir;
   }
 
-  function buildWhatsappUrl(produit) {
-    var productUrl =
-      getSiteBaseUrl() +
-      'produit.html?id=' +
-      encodeURIComponent(produit.id);
+  function buildProductUrl_(produit) {
+    return getSiteBaseUrl() + 'produit.html?id=' + encodeURIComponent(produit.id);
+  }
 
-    var message;
-
+  function buildSmsBody_(produit) {
     if (produit.disponibilite === 'rupture') {
+      return 'Bonjour Tantie Pauline, je souhaite savoir quand le produit « ' + produit.nom + ' » (référence ' + produit.id + ') sera de nouveau disponible.';
+    }
+    return 'Bonjour Tantie Pauline, je suis intéressé(e) par le produit « ' + produit.nom + ' », référence ' + produit.id + '. Pouvez-vous me donner plus d\'informations ?';
+  }
 
-      message =
-        'Bonjour Tantie Pauline, je souhaite avoir des informations sur le produit « ' +
-        produit.nom +
-        ' ».\n' +
-        'Référence : ' +
-        produit.id +
-        '\n\n' +
-        'Voir le produit :\n' +
-        productUrl;
+  function buildEmailSubject_(produit) {
+    return 'Demande d\'information — ' + produit.nom;
+  }
 
+  function buildEmailBody_(produit) {
+    return 'Bonjour Tantie Pauline,\n\n' +
+      'Je suis intéressé(e) par le produit suivant :\n' +
+      '- Nom : ' + produit.nom + '\n' +
+      '- Référence : ' + produit.id + '\n' +
+      '- Prix : ' + formatPrice(produit.prix) + '\n\n' +
+      'Voir la fiche produit :\n' + buildProductUrl_(produit) + '\n\n' +
+      'Merci de me donner plus d\'informations.';
+  }
+
+  function updateContactButtons_(produit) {
+    var config = window.SHOP_CONFIG || {};
+
+    if (config.phone) {
+      callBtn.href = 'tel:' + config.phone;
+      callBtn.hidden = false;
+
+      smsBtn.href = 'sms:' + config.phone + '?body=' + encodeURIComponent(buildSmsBody_(produit));
+      smsBtn.hidden = false;
     } else {
-
-      message =
-        'Bonjour Tantie Pauline, je suis intéressé(e) par le produit « ' +
-        produit.nom +
-        ' » au prix de ' +
-        formatPrice(produit.prix) +
-        '.\n' +
-        'Référence : ' +
-        produit.id +
-        '\n\n' +
-        'Voir le produit :\n' +
-        productUrl;
+      callBtn.hidden = true;
+      smsBtn.hidden = true;
     }
 
-    return (
-      'https://wa.me/22600000000?text=' +
-      encodeURIComponent(message)
-    );
+    if (config.email) {
+      var params = 'subject=' + encodeURIComponent(buildEmailSubject_(produit)) +
+        '&body=' + encodeURIComponent(buildEmailBody_(produit));
+      emailBtn.href = 'mailto:' + config.email + '?' + params;
+      emailBtn.hidden = false;
+    } else {
+      emailBtn.hidden = true;
+    }
   }
 
   function showSkeleton() {
@@ -102,64 +111,33 @@
   function showNotFound(title, text) {
     document.getElementById('notFoundTitle').textContent = title;
     document.getElementById('notFoundText').textContent = text;
-
     skeletonSection.hidden = true;
     detailSection.hidden = true;
     notFoundSection.hidden = false;
   }
 
   function renderGallery(produit) {
-
-    currentPhotos =
-      (produit.photos && produit.photos.length)
-        ? produit.photos
-        : [produit.imagePrincipale];
-
+    currentPhotos = (produit.photos && produit.photos.length) ? produit.photos : [produit.imagePrincipale];
     currentPhotoIndex = 0;
-
     setMainImage(0, produit.nom);
 
     thumbsContainer.innerHTML = '';
-
     if (currentPhotos.length > 1) {
-
       currentPhotos.forEach(function (photoUrl, index) {
-
         var thumb = document.createElement('button');
-
         thumb.type = 'button';
-
-        thumb.className =
-          'product-thumb' +
-          (index === 0 ? ' active' : '');
-
-        thumb.setAttribute(
-          'aria-label',
-          'Photo ' +
-          (index + 1) +
-          ' sur ' +
-          currentPhotos.length
-        );
+        thumb.className = 'product-thumb' + (index === 0 ? ' active' : '');
+        thumb.setAttribute('aria-label', 'Photo ' + (index + 1) + ' sur ' + currentPhotos.length);
 
         var img = document.createElement('img');
-
         img.src = photoUrl;
         img.alt = '';
-
         thumb.appendChild(img);
 
-        thumb.addEventListener(
-          'click',
-          function () {
-
-            setMainImage(
-              index,
-              produit.nom
-            );
-
-            updateActiveThumb(index);
-          }
-        );
+        thumb.addEventListener('click', function () {
+          setMainImage(index, produit.nom);
+          updateActiveThumb(index);
+        });
 
         thumbsContainer.appendChild(thumb);
       });
@@ -167,82 +145,39 @@
   }
 
   function updateActiveThumb(index) {
-
-    thumbsContainer
-      .querySelectorAll('.product-thumb')
-      .forEach(function (thumb, i) {
-
-        thumb.classList.toggle(
-          'active',
-          i === index
-        );
-
-      });
+    thumbsContainer.querySelectorAll('.product-thumb').forEach(function (thumb, i) {
+      thumb.classList.toggle('active', i === index);
+    });
   }
 
   function setMainImage(index, altBase) {
-
     currentPhotoIndex = index;
-
-    mainImage.src =
-      currentPhotos[index];
-
-    mainImage.alt =
-      altBase +
-      ' — photo ' +
-      (index + 1);
+    mainImage.src = currentPhotos[index];
+    mainImage.alt = altBase + ' — photo ' + (index + 1);
   }
 
   function openLightbox(index) {
-
     currentPhotoIndex = index;
-
     updateLightboxImage();
-
     lightbox.classList.add('open');
-
-    lightbox.setAttribute(
-      'aria-hidden',
-      'false'
-    );
-
-    document.body.classList.add(
-      'nav-locked'
-    );
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('nav-locked');
   }
 
   function closeLightbox() {
-
     lightbox.classList.remove('open');
-
-    lightbox.setAttribute(
-      'aria-hidden',
-      'true'
-    );
-
-    document.body.classList.remove(
-      'nav-locked'
-    );
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('nav-locked');
   }
 
   function updateLightboxImage() {
-
-    lightboxImg.src =
-      currentPhotos[currentPhotoIndex];
-
+    lightboxImg.src = currentPhotos[currentPhotoIndex];
     if (currentPhotos.length > 1) {
-
-      lightboxCounter.textContent =
-        (currentPhotoIndex + 1) +
-        ' / ' +
-        currentPhotos.length;
-
+      lightboxCounter.textContent = (currentPhotoIndex + 1) + ' / ' + currentPhotos.length;
       lightboxCounter.hidden = false;
       lightboxPrev.hidden = false;
       lightboxNext.hidden = false;
-
     } else {
-
       lightboxCounter.hidden = true;
       lightboxPrev.hidden = true;
       lightboxNext.hidden = true;
@@ -250,335 +185,119 @@
   }
 
   function showPrevPhoto() {
-
-    currentPhotoIndex =
-      (
-        currentPhotoIndex -
-        1 +
-        currentPhotos.length
-      ) %
-      currentPhotos.length;
-
+    currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length;
     updateLightboxImage();
-
-    setMainImage(
-      currentPhotoIndex,
-      nameEl.textContent
-    );
-
-    updateActiveThumb(
-      currentPhotoIndex
-    );
+    setMainImage(currentPhotoIndex, nameEl.textContent);
+    updateActiveThumb(currentPhotoIndex);
   }
 
   function showNextPhoto() {
-
-    currentPhotoIndex =
-      (
-        currentPhotoIndex +
-        1
-      ) %
-      currentPhotos.length;
-
+    currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotos.length;
     updateLightboxImage();
-
-    setMainImage(
-      currentPhotoIndex,
-      nameEl.textContent
-    );
-
-    updateActiveThumb(
-      currentPhotoIndex
-    );
+    setMainImage(currentPhotoIndex, nameEl.textContent);
+    updateActiveThumb(currentPhotoIndex);
   }
 
   function renderDescription(text) {
-
     descriptionTextEl.innerHTML = '';
-
     if (!text || !text.trim()) {
-
       descriptionSection.hidden = true;
-
       return;
     }
-
     descriptionSection.hidden = false;
-
     text.split('\n').forEach(function (line) {
-
-      if (!line.trim()) {
-        return;
-      }
-
+      if (!line.trim()) return;
       var p = document.createElement('p');
-
       p.textContent = line;
-
       descriptionTextEl.appendChild(p);
     });
   }
 
   function renderProduct(produit) {
-
     currentProduct = produit;
 
-    categoryTextEl.textContent =
-      CATEGORY_LABELS[produit.categorie] ||
-      produit.categorie.toUpperCase();
+    categoryTextEl.textContent = CATEGORY_LABELS[produit.categorie] || produit.categorie.toUpperCase();
+    nameEl.textContent = produit.nom;
+    priceEl.textContent = formatPrice(produit.prix);
 
-    nameEl.textContent =
-      produit.nom;
+    badgeEl.className = 'prod-badge prod-badge-' + produit.disponibilite;
+    badgeTextEl.textContent = STATUS_LABELS[produit.disponibilite] || produit.disponibilite;
 
-    priceEl.textContent =
-      formatPrice(produit.prix);
+    shortDescEl.textContent = produit.descriptionCourte || '';
+    renderDescription(produit.description);
 
-    badgeEl.className =
-      'prod-badge prod-badge-' +
-      produit.disponibilite;
+    renderGallery(produit);
 
-    badgeTextEl.textContent =
-      STATUS_LABELS[produit.disponibilite] ||
-      produit.disponibilite;
-
-    shortDescEl.textContent =
-      produit.descriptionCourte || '';
-
-    renderDescription(
-      produit.description
-    );
-
-    renderGallery(
-      produit
-    );
-
-    whatsappBtn.href =
-      buildWhatsappUrl(
-        produit
-      );
-
-    whatsappLabel.textContent =
-      produit.disponibilite === 'rupture'
-        ? 'Demander des informations'
-        : 'Écrire à Tantie Pauline sur WhatsApp';
+    updateContactButtons_(produit);
 
     skeletonSection.hidden = true;
     notFoundSection.hidden = true;
     detailSection.hidden = false;
   }
 
+  window.addEventListener('catalogueUpdated', function (event) {
+    if (!currentProduct || !event.detail || !Array.isArray(event.detail.products)) return;
 
-  /*
-   * ==========================================
-   * MISE À JOUR AUTOMATIQUE
-   * ==========================================
-   *
-   * Si api.js découvre que le catalogue a changé
-   * pendant que cette fiche est ouverte, on cherche
-   * le même produit dans les nouvelles données.
-   *
-   * Cela permet par exemple de mettre à jour :
-   * - le prix ;
-   * - la disponibilité ;
-   * - les photos ;
-   * - la description.
-   */
+    var updatedProduct = event.detail.products.find(function (product) {
+      return String(product.id) === String(currentProduct.id);
+    });
 
-  window.addEventListener(
-    'catalogueUpdated',
-    function (event) {
-
-      if (
-        !currentProduct ||
-        !event.detail ||
-        !Array.isArray(event.detail.products)
-      ) {
-        return;
-      }
-
-      var updatedProduct =
-        event.detail.products.find(
-          function (product) {
-            return String(product.id) ===
-              String(currentProduct.id);
-          }
-        );
-
-      /*
-       * Le produit n'existe plus dans le nouveau
-       * catalogue : on affiche l'état introuvable.
-       */
-      if (!updatedProduct) {
-
-        closeLightbox();
-
-        showNotFound(
-          'Produit introuvable',
-          'Cette pièce n\'est peut-être plus disponible ou le lien n\'est plus valide.'
-        );
-
-        return;
-      }
-
-      /*
-       * Le produit existe toujours :
-       * on actualise simplement la fiche.
-       */
-      renderProduct(
-        updatedProduct
-      );
+    if (!updatedProduct) {
+      closeLightbox();
+      showNotFound('Produit introuvable', 'Cette pièce n\'est peut-être plus disponible ou le lien n\'est plus valide.');
+      return;
     }
-  );
 
-
-  /* ==============================
-     INITIALISATION
-     ============================== */
+    renderProduct(updatedProduct);
+  });
 
   function init() {
-
-    var params =
-      new URLSearchParams(
-        window.location.search
-      );
-
-    var id =
-      params.get('id');
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get('id');
 
     if (!id) {
-
       showSkeleton();
-
-      setTimeout(
-        function () {
-
-          showNotFound(
-            'Produit introuvable',
-            'Aucun article n\'a été précisé. Retournez à la collection pour choisir un article.'
-          );
-
-        },
-        300
-      );
-
+      setTimeout(function () {
+        showNotFound('Produit introuvable', 'Aucun article n\'a été précisé. Retournez à la collection pour choisir un article.');
+      }, 300);
       return;
     }
 
     showSkeleton();
 
-    window.PublicAPI
-      .loadProductById(id)
-
+    window.PublicAPI.loadProductById(id)
       .then(function (produit) {
-
-        renderProduct(
-          produit
-        );
-
+        renderProduct(produit);
       })
-
       .catch(function (err) {
-
-        console.error(
-          '[produit.js]',
-          err
-        );
-
-        if (
-          err.code ===
-          'PRODUCT_NOT_FOUND'
-        ) {
-
-          showNotFound(
-            'Produit introuvable',
-            'Cette pièce n\'est peut-être plus disponible ou le lien n\'est plus valide.'
-          );
-
+        console.error('[produit.js]', err);
+        if (err.code === 'PRODUCT_NOT_FOUND') {
+          showNotFound('Produit introuvable', 'Cette pièce n\'est peut-être plus disponible ou le lien n\'est plus valide.');
         } else {
-
-          showNotFound(
-            'Chargement impossible',
-            'La fiche produit n\'a pas pu être chargée pour le moment. Réessayez dans quelques instants.'
-          );
+          showNotFound('Chargement impossible', 'La fiche produit n\'a pas pu être chargée pour le moment. Réessayez dans quelques instants.');
         }
       });
   }
 
+  mainImageBtn.addEventListener('click', function () {
+    openLightbox(currentPhotoIndex);
+  });
 
-  /* ==============================
-     GALERIE
-     ============================== */
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', showPrevPhoto);
+  lightboxNext.addEventListener('click', showNextPhoto);
 
-  mainImageBtn.addEventListener(
-    'click',
-    function () {
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
 
-      openLightbox(
-        currentPhotoIndex
-      );
+  document.addEventListener('keydown', function (e) {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPrevPhoto();
+    if (e.key === 'ArrowRight') showNextPhoto();
+  });
 
-    }
-  );
-
-  lightboxClose.addEventListener(
-    'click',
-    closeLightbox
-  );
-
-  lightboxPrev.addEventListener(
-    'click',
-    showPrevPhoto
-  );
-
-  lightboxNext.addEventListener(
-    'click',
-    showNextPhoto
-  );
-
-  lightbox.addEventListener(
-    'click',
-    function (e) {
-
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
-
-    }
-  );
-
-  document.addEventListener(
-    'keydown',
-    function (e) {
-
-      if (
-        !lightbox.classList.contains('open')
-      ) {
-        return;
-      }
-
-      if (e.key === 'Escape') {
-        closeLightbox();
-      }
-
-      if (e.key === 'ArrowLeft') {
-        showPrevPhoto();
-      }
-
-      if (e.key === 'ArrowRight') {
-        showNextPhoto();
-      }
-
-    }
-  );
-
-
-  /* ==============================
-     DÉMARRAGE
-     ============================== */
-
-  document.addEventListener(
-    'DOMContentLoaded',
-    init
-  );
+  document.addEventListener('DOMContentLoaded', init);
 
 })();
