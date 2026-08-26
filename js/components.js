@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   loadComponent('components/header.html', 'site-header', initHeaderBehavior);
-  loadComponent('components/footer.html', 'site-footer', initSmartWhatsappWidget);
+  loadComponent('components/footer.html', 'site-footer', initSmartWhatsappWidgetPlaceholder);
 });
 
 /**
@@ -21,6 +21,7 @@ function loadComponent(url, placeholderId, callback) {
     .then(function (html) {
       el.innerHTML = html;
       setActiveNavLinks();
+      if (window.applyContactLinks) window.applyContactLinks(el);
       if (callback) callback();
     })
     .catch(function (err) {
@@ -90,34 +91,11 @@ function initHeaderBehavior() {
 }
 
 /**
- * Widget WhatsApp flottant "intelligent" : bascule son apparence selon
- * qu'il survole une zone claire ou une zone sombre/bleue du site.
- * Utilise IntersectionObserver (léger, pas de setInterval), en ne
- * surveillant que la bande basse de l'écran où le widget est ancré.
+ * Le widget flottant du footer n'a plus de logique de contraste
+ * WhatsApp à gérer (retiré avec la suppression de WhatsApp) : cette
+ * fonction ne fait rien pour l'instant, conservée comme point
+ * d'extension si un futur widget flottant a besoin d'une init dédiée.
  */
-function initSmartWhatsappWidget() {
-  var widget = document.getElementById('waFloatBadge');
-  var darkZones = document.querySelectorAll('[data-wa-contrast="dark"]');
-
-  if (!widget || !darkZones.length || !('IntersectionObserver' in window)) return;
-
-  var activeZones = new Set();
-
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        activeZones.add(entry.target);
-      } else {
-        activeZones.delete(entry.target);
-      }
-    });
-    widget.classList.toggle('wa-float-badge-light', activeZones.size > 0);
-  }, {
-    root: null,
-    // Ne considère que la bande basse de l'écran (là où le widget flotte)
-    rootMargin: '-85% 0px 0px 0px',
-    threshold: 0
-  });
-
-  darkZones.forEach(function (zone) { observer.observe(zone); });
+function initSmartWhatsappWidgetPlaceholder() {
+  // Rien à faire pour l'instant.
 }
