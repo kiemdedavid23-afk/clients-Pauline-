@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chez Tantie Pauline — Sacs & Chaussures</title>
-  <meta name="description" content="Chez Tantie Pauline : sacs et chaussures sélectionnés avec soin. Commandez sur WhatsApp.">
+  <meta name="description" content="Chez Tantie Pauline : sacs et chaussures sélectionnés avec soin.">
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#8EC8E8">
 
-  <!-- Open Graph — génériques pour l'instant, statiques (compatibles avec l'hébergement actuel) -->
+  <!-- Open Graph — génériques, statiques -->
   <meta property="og:site_name" content="Chez Tantie Pauline">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Chez Tantie Pauline — Sacs & Chaussures">
-  <meta property="og:description" content="Découvrez les sacs et chaussures sélectionnés avec soin par Tantie Pauline. Commande simple sur WhatsApp.">
+  <meta property="og:description" content="Découvrez les sacs et chaussures sélectionnés avec soin par Tantie Pauline.">
   <!-- TODO : remplacer par le domaine réel une fois connu -->
   <meta property="og:image" content="https://VOTRE-DOMAINE-ICI/assets/social/og-default.jpg">
   <meta property="og:url" content="https://VOTRE-DOMAINE-ICI/index.html">
@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  
+
   <div id="app-download-banner"></div>
 
   <script src="js/preloader.js"></script>
@@ -53,10 +53,10 @@
             </div>
           </div>
 
-          <div class="floating-card floating-card-bottom">
-            <p class="floating-card-title">+226 00 00 00 00</p>
-            <p class="floating-card-sub">Commandez sur WhatsApp</p>
-          </div>
+          <a href="#" class="floating-card floating-card-bottom" data-contact-role="call">
+            <p class="floating-card-title" data-contact-fill="phone"></p>
+            <p class="floating-card-sub">Appelez Tantie Pauline</p>
+          </a>
         </div>
 
         <div class="hero-content">
@@ -68,7 +68,7 @@
           <p class="hero-signature">Des belles choses, choisies avec passion.</p>
           <div class="hero-actions">
             <a href="produits.html" class="btn-primary">Découvrir la collection</a>
-            <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline,%20je%20souhaite%20échanger%20avec%20vous" class="btn-secondary" target="_blank" rel="noopener">Échanger sur WhatsApp</a>
+            <a href="#" class="btn-secondary" data-contact-role="call">Appeler Tantie Pauline</a>
           </div>
         </div>
 
@@ -76,7 +76,7 @@
     </section>
 
     <!-- ===================== 02. RÉASSURANCE ===================== -->
-    <section class="trust-bar" data-wa-contrast="dark">
+    <section class="trust-bar">
       <div class="trust-bar-container">
         <div class="trust-item">
           <span class="trust-icon">&#10003;</span>
@@ -97,8 +97,8 @@
         <div class="trust-item">
           <span class="trust-icon">&#10022;</span>
           <div class="trust-item-text">
-            <p class="trust-item-title">Commande sur WhatsApp</p>
-            <p class="trust-item-sub">Un message suffit pour commencer.</p>
+            <p class="trust-item-title">Contactez Tantie Pauline</p>
+            <p class="trust-item-sub">Par appel, SMS ou e-mail.</p>
           </div>
         </div>
       </div>
@@ -157,7 +157,7 @@
     </section>
 
     <!-- ===================== 04. DANS LES COULISSES ===================== -->
-    <section class="behind-scenes-section" data-wa-contrast="dark">
+    <section class="behind-scenes-section">
       <div class="behind-scenes-pattern"></div>
       <div class="behind-scenes-container">
 
@@ -238,6 +238,9 @@
         <div class="section-header-center">
           <span class="section-tag"><span class="tag-dash"></span>COMMENT COMMANDER ?</span>
           <h2 class="section-title">Votre prochaine pièce commence par un message</h2>
+          <p class="section-lead">
+            Vous avez repéré un article qui vous plaît ? Contactez directement Tantie Pauline par téléphone, SMS ou e-mail pour échanger avec elle.
+          </p>
         </div>
 
         <div class="steps-grid">
@@ -248,8 +251,8 @@
           </div>
           <div class="step-card">
             <span class="step-number">02</span>
-            <h3>Écrivez</h3>
-            <p>Envoyez un message à Tantie Pauline directement sur WhatsApp.</p>
+            <h3>Contactez</h3>
+            <p>Appelez ou envoyez un message à Tantie Pauline directement.</p>
           </div>
           <div class="step-card">
             <span class="step-number">03</span>
@@ -259,7 +262,12 @@
         </div>
 
         <div class="how-to-order-cta">
-          <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline,%20je%20souhaite%20passer%20commande" class="btn-primary" target="_blank" rel="noopener">Écrire à Tantie Pauline &rarr;</a>
+          <div class="contact-methods-row">
+            <a href="#" class="btn-primary contact-method-btn" data-contact-role="call">Appeler</a>
+            <a href="#" class="btn-secondary contact-method-btn" data-contact-role="sms" data-contact-body="Bonjour Tantie Pauline, je souhaite passer commande.">Envoyer un SMS</a>
+            <a href="#" class="btn-secondary contact-method-btn" data-contact-role="mail" data-contact-subject="Demande d'information" data-contact-body="Bonjour Tantie Pauline, je souhaite passer commande.">Envoyer un e-mail</a>
+          </div>
+          <p class="how-to-order-note">Une question avant de commander ? N'hésitez pas à nous contacter simplement pour demander conseil.</p>
         </div>
 
       </div>
@@ -301,7 +309,7 @@
     </section>
 
     <!-- ===================== 08. GRANDE RESPIRATION VISUELLE ===================== -->
-    <section class="breath-section" data-wa-contrast="dark">
+    <section class="breath-section">
       <p class="breath-quote">« Choisir quelque chose qui nous plaît, c'est aussi se faire plaisir. »</p>
       <p class="breath-signature">— Chez Tantie Pauline</p>
     </section>
@@ -311,12 +319,12 @@
       <div class="cta-container">
         <span class="cta-tag"><span class="tag-dash light"></span>PARLONS-EN</span>
         <h2 class="cta-title">Une envie, une question, une recherche particulière ?</h2>
-        <p class="cta-desc">Tantie Pauline est à votre écoute. Écrivez-lui directement sur WhatsApp pour découvrir la collection, demander un renseignement ou simplement échanger.</p>
-        <a href="https://wa.me/22600000000?text=Bonjour%20Tantie%20Pauline,%20je%20souhaite%20échanger" class="btn-wa-large" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Écrire à Tantie Pauline sur WhatsApp
-        </a>
-        <p class="cta-footnote">Un simple message suffit pour commencer.</p>
+        <p class="cta-desc">Tantie Pauline est à votre écoute. Contactez-la par téléphone, SMS ou e-mail.</p>
+        <div class="contact-methods-row">
+          <a href="#" class="btn-primary contact-method-btn" data-contact-role="call">Appeler</a>
+          <a href="#" class="btn-secondary contact-method-btn" data-contact-role="sms" data-contact-body="Bonjour Tantie Pauline, je souhaite échanger avec vous.">Envoyer un SMS</a>
+          <a href="#" class="btn-secondary contact-method-btn" data-contact-role="mail" data-contact-subject="Demande d'information" data-contact-body="Bonjour Tantie Pauline, je souhaite échanger avec vous.">Envoyer un e-mail</a>
+        </div>
       </div>
     </section>
 
@@ -324,6 +332,8 @@
 
   <div id="site-footer"></div>
 
+  <script src="js/config.js"></script>
+  <script src="js/contact.js"></script>
   <script src="js/components.js"></script>
   <script src="js/app-download.js"></script>
 
