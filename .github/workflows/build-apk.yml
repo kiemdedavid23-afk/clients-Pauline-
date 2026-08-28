@@ -1,0 +1,87 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Installer Java (nécessaire pour Gradle)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Installer les dépendances Capacitor
+        run: npm install
+
+      - name: Injecter l'URL réelle du dépôt dans la bannière de téléchargement
+        run: sed -i "s#VOTRE-COMPTE/VOTRE-DEPOT#${{ github.repository }}#g" js/app-download.js
+
+      - name: Préparer les fichiers web (dossier www/)
+        run: |
+          mkdir -p www
+          cp -r index.html produit.html produits.html contact.html manifest.json .well-known components css js assets admin www/
+
+      - name: Ajouter la plateforme Android
+        run: npx cap add android
+
+      - name: Générer les icônes Android à partir du logo existant
+        run: |
+          mkdir -p assets-source
+          cp assets/icons/icon-512.png assets-source/icon.png
+          cp assets/icons/icon-512.png assets-source/icon-foreground.png
+          npx capacitor-assets generate --android --assetPath assets-source --iconBackgroundColor "#8EC8E8" --iconBackgroundColorDark "#8EC8E8"
+
+      - name: Configurer les notifications push (Firebase) si google-services.json est présent
+        run: |
+          if [ -f "google-services.json" ]; then
+            cp google-services.json android/app/google-services.json
+            sed -i "s#classpath 'com.android.tools.build:gradle:8.2.1'#classpath 'com.android.tools.build:gradle:8.2.1'\n        classpath 'com.google.gms:google-services:4.4.2'#" android/build.gradle
+            sed -i "s#apply plugin: 'com.android.application'#apply plugin: 'com.android.application'\napply plugin: 'com.google.gms.google-services'#" android/app/build.gradle
+            echo "Firebase configuré, notifications push activées."
+          else
+            echo "Pas de google-services.json trouvé à la racine du dépôt — notifications push désactivées pour ce build."
+          fi
+
+      - name: Synchroniser Capacitor
+        run: npx cap sync android
+
+      - name: Compiler l'APK (debug, installable directement)
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Renommer l'APK généré
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk chez-tantie-pauline.apk
+
+      - name: Publier l'APK en artefact du workflow
+        uses: actions/upload-artifact@v4
+        with:
+          name: chez-tantie-pauline-apk
+          path: chez-tantie-pauline.apk
+
+      - name: Publier/mettre à jour la Release GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: app-v${{ github.run_number }}
+          name: "Chez Tantie Pauline — build ${{ github.run_number }}"
+          make_latest: true
+          files: chez-tantie-pauline.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
