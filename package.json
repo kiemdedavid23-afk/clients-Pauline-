@@ -1,0 +1,20 @@
+{
+  "name": "chez-tantie-pauline-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Application Android (Capacitor) pour Chez Tantie Pauline",
+  "scripts": {
+    "sync": "cap sync android",
+    "open:android": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
+    "@capacitor/geolocation": "^6.0.1",
+    "@capacitor/push-notifications": "^6.0.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.2",
+    "@capacitor/assets": "^3.0.5"
+  }
+}
